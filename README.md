@@ -1,2 +1,2 @@
 # Backloggr
-Track your backlog of games
+Track your backlog of games.
