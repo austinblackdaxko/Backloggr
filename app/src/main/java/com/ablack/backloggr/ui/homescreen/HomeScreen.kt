@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -23,25 +25,42 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ablack.backloggr.R
+import com.ablack.backloggr.data.VideoGame
+
+
+
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+
+    viewModel.fetchTVShows()
 //    Text(text = viewModel.title)
     val scrollState = rememberScrollState()
-    Row(modifier = Modifier.verticalScroll(scrollState)) {
+//    GameItem(videoGame = viewModel.videoGame)
 
+    LazyColumn() {
+        items(viewModel.videoGames) {
+            item ->  GameItem(videoGame = item)
+        }
+    }
+
+}
+
+@Composable
+fun GameItem(videoGame: VideoGame) {
+    Row() {
         val image: Painter = painterResource(id = R.drawable.hollowknight)
         Image(
             painter = image,
-            contentDescription = "gamecover",
+            contentDescription = "${videoGame.title} game cover",
             contentScale = ContentScale.Crop,            // crop the image if it's not a square
             modifier = Modifier
                 .size(50.dp)
-                .clip(CircleShape)                       // clip to the circle shape
+                .clip(CircleShape)                      // clip to the circle shape
         )
 
         Text(
-            text = viewModel.videoGame.title,
+            text = videoGame.title,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.fillMaxWidth()
