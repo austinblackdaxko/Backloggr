@@ -3,15 +3,13 @@ package com.ablack.backloggr.ui.homescreen
 import android.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -55,7 +53,7 @@ fun GameItem(videoGame: VideoGame) {
             contentDescription = "${videoGame.title} game cover",
             contentScale = ContentScale.Crop,            // crop the image if it's not a square
             modifier = Modifier
-                .size(50.dp)
+                .size(45.dp)
                 .clip(CircleShape)                      // clip to the circle shape
         )
 
@@ -63,7 +61,16 @@ fun GameItem(videoGame: VideoGame) {
             text = videoGame.title,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(15.dp)
+        )
+        Text(
+            text = videoGame.genre,
+            fontSize = 12.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+                .offset(x = 30.dp)
         )
     }
 }

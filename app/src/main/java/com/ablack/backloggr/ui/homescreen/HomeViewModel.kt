@@ -28,7 +28,8 @@ class HomeViewModel @Inject constructor(private val movieAPI: MovieAPI) : ViewMo
     val vgtitle : String = videoGame.title
 
     val videoGames = listOf(videoGame, videoGame, videoGame, videoGame, videoGame, videoGame,
-        videoGame, videoGame, videoGame)
+        videoGame, videoGame, videoGame, videoGame,videoGame,videoGame,videoGame,videoGame,videoGame,
+        videoGame,videoGame,videoGame,videoGame)
 
     fun fetchTVShows() {
         viewModelScope.launch(Dispatchers.IO) {
