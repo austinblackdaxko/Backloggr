@@ -3,8 +3,6 @@ package com.ablack.backloggr.ui.homescreen
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ablack.backloggr.R
-import com.ablack.backloggr.data.VideoGame
 import com.ablack.backloggr.data.network.TVMazeAPI
 import com.ablack.backloggr.data.network.models.TVShow
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,14 +15,7 @@ class HomeViewModel @Inject constructor(private val tvMazeAPI: TVMazeAPI) : View
 
     val tvShows = mutableStateListOf<TVShow>()
 
-    val title : String = "hello world"
-    val videoGame = VideoGame("Hollow Knight", "Metroidvania", "A great video" +
-            "game", R.drawable.hollowknight )
-    val vgtitle : String = videoGame.title
 
-    val videoGames = listOf(videoGame, videoGame, videoGame, videoGame, videoGame, videoGame,
-        videoGame, videoGame, videoGame, videoGame,videoGame,videoGame,videoGame,videoGame,videoGame,
-        videoGame,videoGame,videoGame,videoGame)
 
     fun fetchTVShows() {
         viewModelScope.launch(Dispatchers.IO) {
