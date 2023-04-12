@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.Gray
@@ -24,33 +25,35 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ablack.backloggr.R
 import com.ablack.backloggr.data.VideoGame
-
-
+import com.ablack.backloggr.data.network.models.TVShow
 
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 
-    viewModel.fetchTVShows()
+    LaunchedEffect(viewModel) {
+        viewModel.fetchTVShows()
+    }
+
 //    Text(text = viewModel.title)
     val scrollState = rememberScrollState()
 //    GameItem(videoGame = viewModel.videoGame)
 
     LazyColumn() {
-        items(viewModel.videoGames) {
-            item ->  GameItem(videoGame = item)
+        items(viewModel.tvShows) {
+            item ->  GameItem(tvShow = item)
         }
     }
 
 }
 
 @Composable
-fun GameItem(videoGame: VideoGame) {
+fun GameItem(tvShow: TVShow) {
     Row() {
         val image: Painter = painterResource(id = R.drawable.hollowknight)
         Image(
             painter = image,
-            contentDescription = "${videoGame.title} game cover",
+            contentDescription = "${tvShow.name} cover",
             contentScale = ContentScale.Crop,            // crop the image if it's not a square
             modifier = Modifier
                 .size(45.dp)
@@ -58,14 +61,14 @@ fun GameItem(videoGame: VideoGame) {
         )
 
         Text(
-            text = videoGame.title,
+            text = tvShow.name,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(15.dp)
         )
         Text(
-            text = videoGame.genre,
+            text = tvShow.id,
             fontSize = 12.sp,
             modifier = Modifier
                 .fillMaxWidth()

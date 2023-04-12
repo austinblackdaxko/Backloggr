@@ -3,7 +3,7 @@ package com.ablack.backloggr.data.network
 import com.ablack.backloggr.data.network.models.TVShow
 import retrofit2.http.GET
 
-interface MovieAPI {
+interface TVMazeAPI {
 
     //https://api.tvmaze.com/schedule/full
 

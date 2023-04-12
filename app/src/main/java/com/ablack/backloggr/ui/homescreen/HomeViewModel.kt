@@ -1,24 +1,19 @@
 package com.ablack.backloggr.ui.homescreen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.runtime.Composable
-import androidx.activity.compose.setContent
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ablack.backloggr.R
 import com.ablack.backloggr.data.VideoGame
-import com.ablack.backloggr.data.network.MovieAPI
+import com.ablack.backloggr.data.network.TVMazeAPI
 import com.ablack.backloggr.data.network.models.TVShow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val movieAPI: MovieAPI) : ViewModel() {
+class HomeViewModel @Inject constructor(private val tvMazeAPI: TVMazeAPI) : ViewModel() {
 
     val tvShows = mutableStateListOf<TVShow>()
 
@@ -33,10 +28,9 @@ class HomeViewModel @Inject constructor(private val movieAPI: MovieAPI) : ViewMo
 
     fun fetchTVShows() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = movieAPI.getFullSchedule()
+            val result = tvMazeAPI.getFullSchedule()
             tvShows.clear()
-            tvShows.addAll(result)
+            tvShows.addAll(result.take(50))
         }
     }
-
 }

@@ -1,6 +1,6 @@
 package com.ablack.backloggr.di
 
-import com.ablack.backloggr.data.network.MovieAPI
+import com.ablack.backloggr.data.network.TVMazeAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +21,6 @@ object ApplicationModule {
 
 
     @Provides
-    fun movieAPI(retrofit: Retrofit) = retrofit.create(MovieAPI::class.java)
+    fun tvMazeAPI(retrofit: Retrofit) = retrofit.create(TVMazeAPI::class.java)
 
 }
