@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -22,29 +21,30 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ablack.backloggr.R
 import com.ablack.backloggr.data.network.models.TVShow
+import com.ablack.backloggr.ui.bottomnav.BottomNavigation
 
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(onSearchClicked: () -> Unit, viewModel: HomeViewModel = hiltViewModel()) {
 
     LaunchedEffect(viewModel) {
         viewModel.fetchTVShows()
     }
 
     Scaffold(bottomBar = {
-        Row(modifier = Modifier.fillMaxWidth().background(Color.Magenta).padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly) {
-            Text(text = "Home", fontSize = 20.sp)
-            Text(text = "Search", fontSize = 20.sp)
-        }
+
+        BottomNavigation(onSearchClicked = {onSearchClicked()})
+
     }) {
         LazyColumn(modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
-            items(viewModel.tvShows) {
-                    item ->  GameItem(tvShow = item)
+            items(viewModel.tvShows) { item ->
+                GameItem(tvShow = item)
             }
         }
     }
 }
+
+
 
 @Composable
 fun GameItem(tvShow: TVShow) {
