@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import com.ablack.backloggr.ui.SearchScreen
 
 @Composable
 fun SearchScreen(searchViewModel: SearchViewModel, onHomeClicked: () -> Unit) {
@@ -48,7 +49,7 @@ fun SearchScreen(searchViewModel: SearchViewModel, onHomeClicked: () -> Unit) {
                  )
         },
         bottomBar = {
-            BottomNavigation(onHomeClicked = {onHomeClicked()})
+            BottomNavigation(selectedScreen = SearchScreen, onHomeClicked = {onHomeClicked()})
         }
     ) {}
 }
