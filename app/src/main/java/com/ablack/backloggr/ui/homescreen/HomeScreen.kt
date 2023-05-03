@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ablack.backloggr.R
 import com.ablack.backloggr.data.network.models.TVShow
+import com.ablack.backloggr.ui.HomeScreen
 import com.ablack.backloggr.ui.bottomnav.BottomNavigation
 
 
@@ -33,7 +34,7 @@ fun HomeScreen(onSearchClicked: () -> Unit, viewModel: HomeViewModel = hiltViewM
 
     Scaffold(bottomBar = {
 
-        BottomNavigation(onSearchClicked = {onSearchClicked()})
+        BottomNavigation(selectedScreen = HomeScreen, onSearchClicked = {onSearchClicked()})
 
     }) {
         LazyColumn(modifier = Modifier.padding(bottom = it.calculateBottomPadding())) {
