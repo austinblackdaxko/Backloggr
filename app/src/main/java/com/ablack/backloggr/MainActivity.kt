@@ -14,7 +14,6 @@ import com.ablack.backloggr.ui.HomeScreen
 import com.ablack.backloggr.ui.SearchScreen
 import com.ablack.backloggr.ui.homescreen.HomeScreen
 import com.ablack.backloggr.ui.searchscreen.SearchScreen
-import com.ablack.backloggr.ui.searchscreen.SearchViewModel
 import com.ablack.backloggr.ui.theme.BackloggrTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +39,7 @@ fun MyNavHost(navController: NavHostController) {
 
         }
         composable(SearchScreen.route) {
-            SearchScreen(SearchViewModel(), onHomeClicked = {navController.navigate(HomeScreen.route)})
+            SearchScreen(onHomeClicked = {navController.navigate(HomeScreen.route)})
         }
     }
 }
@@ -51,6 +50,6 @@ fun MyNavHost(navController: NavHostController) {
 @Composable
 fun DefaultPreview() {
     BackloggrTheme {
-        SearchScreen(SearchViewModel(), onHomeClicked = {})
+        SearchScreen(onHomeClicked = {})
     }
 }
