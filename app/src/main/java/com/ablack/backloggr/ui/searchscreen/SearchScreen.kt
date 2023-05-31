@@ -28,7 +28,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.ablack.backloggr.data.network.models.TVShow
+import com.ablack.backloggr.data.network.responses.TVShowResponse
 import com.ablack.backloggr.ui.SearchScreen
 
 @Composable
@@ -208,7 +208,7 @@ fun SearchAppBarPreview() {
 }
 
 @Composable
-fun TVItem(tvShow: TVShow) {
+fun TVItem(tvShow: TVShowResponse) {
     Row() {
         val image: Painter = painterResource(id = com.ablack.backloggr.R.drawable.hollowknight)
         Image(

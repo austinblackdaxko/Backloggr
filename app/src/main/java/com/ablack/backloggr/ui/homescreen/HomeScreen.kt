@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ablack.backloggr.R
-import com.ablack.backloggr.data.network.models.TVShow
+import com.ablack.backloggr.data.network.responses.TVShowResponse
 import com.ablack.backloggr.ui.HomeScreen
 import com.ablack.backloggr.ui.bottomnav.BottomNavigation
 
@@ -48,7 +48,7 @@ fun HomeScreen(onSearchClicked: () -> Unit, viewModel: HomeViewModel = hiltViewM
 
 
 @Composable
-fun GameItem(tvShow: TVShow) {
+fun GameItem(tvShow: TVShowResponse) {
     Row() {
         val image: Painter = painterResource(id = R.drawable.hollowknight)
         Image(
