@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ablack.backloggr.ui.bottomnav.BottomNavigation
@@ -207,7 +208,9 @@ fun SearchAppBarPreview() {
 
 @Composable
 fun TVItem(tvShow: TVShow) {
-    Row() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         AsyncImage(
             model = tvShow.imageUrl,
             contentDescription = "${tvShow.title} cover",
@@ -219,19 +222,17 @@ fun TVItem(tvShow: TVShow) {
         Text(
             text = tvShow.title?:"N/A",
             maxLines = 1,
-            fontSize = 24.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .padding(15.dp)
+                .padding(horizontal = 15.dp)
                 .weight(1f)
         )
         Text(
             text = tvShow.genres.joinToString(", "),
             fontSize = 12.sp,
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(15.dp)
-                .offset(x = 30.dp)
         )
     }
 }

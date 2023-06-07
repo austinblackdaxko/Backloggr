@@ -1,6 +1,8 @@
 package com.ablack.backloggr.di
 
 import com.ablack.backloggr.data.network.TVMazeAPI
+import com.ablack.backloggr.data.repositories.TvShowRepository
+import com.ablack.backloggr.data.repositories.TvShowRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,5 +24,8 @@ object ApplicationModule {
 
     @Provides
     fun tvMazeAPI(retrofit: Retrofit) = retrofit.create(TVMazeAPI::class.java)
+
+    @Provides
+    fun tvShowRepository(tvMazeAPI: TVMazeAPI) : TvShowRepository = TvShowRepositoryImpl(tvMazeAPI)
 
 }
