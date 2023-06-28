@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ablack.backloggr.data.models.TVShow
+import com.ablack.backloggr.data.network.BLResult
 import com.ablack.backloggr.data.repositories.TvShowRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -36,8 +37,14 @@ class SearchViewModel @Inject constructor(private val tvShowRepository: TvShowRe
 
         viewModelScope.launch(Dispatchers.IO) {
             val result = tvShowRepository.searchShows(newValue)
-            tvShows.clear()
-            tvShows.addAll(result.take(50))
+            when(result) {
+                is BLResult.Success -> {
+                    tvShows.clear()
+                    tvShows.addAll(result.data.take(50))
+                }
+                is BLResult.Failure -> result.error.printStackTrace()
+            }
+
 
         }
         // launch tvmaze api in coroutine  viewmodel scope
